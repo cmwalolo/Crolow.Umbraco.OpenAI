@@ -14,3 +14,12 @@ Actual available actions are :
 - Create hints : Some code I used to generate the complete content of the website.
 
 It has been tested on https://crolow.eu => it suits to my need, but it can still need more customisation and fixes.
+
+To use the package :
+- open the solution in Visual Studio:
+  - Pack the Crolow.OpenAi.Umbraco
+  - Copy the create nuget package into a local repository
+  - Install the new package
+  - Update your appsettings from your solution
+- Copy the projects into your solution
+- Refer the generated DLLS into your solution
