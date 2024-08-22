@@ -23,3 +23,5 @@ To use the package :
   - Update your appsettings from your solution
 - Copy the projects into your solution
 - Refer the generated DLLS into your solution
+
+For more info : crolow@outlook.com
