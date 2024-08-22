@@ -1,0 +1,69 @@
+﻿
+
+<div class="body p-2 umb-dashboard-grid ng-scope crolowForm-dashboard" ng-controller="CrolowAIController as vm">
+    <umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+    <h1><localize key="cfApproval">Crolow AI Batch process</localize></h1>
+    <div class="row-fluid">
+        <div class="column span6">
+            <div class="form-group">
+                <label class="mb-2" for="message">Functions</label>
+                <br />
+                <select id="role" ng-model="vm.function" ng-change="vm.changeFunction()">
+                    <option ng-selected="app.id == vm.function"
+                            ng-repeat="app in vm.functions"
+                            ng-value="app.id">
+                        {{app.value}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="mb-2" for="message">Roles</label>
+                <br />
+                <select id="role" ng-model="vm.role">
+                    <option ng-selected="role == app.Name"
+                            ng-repeat="app in vm.roles"
+                            ng-value="app.Name">
+                        {{app.Name}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="mb-2" for="message">Source Language</label>
+                <br />
+                <select id="role" ng-model="vm.sourceLanguage">
+                    <option ng-selected="app.culture == vm.sourceLanguage"
+                            ng-repeat="app in vm.languages"
+                            ng-value="app.culture">
+                        {{app.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="mb-2" for="message">Target Language</label>
+                <br />
+                <select id="role" ng-model="vm.targetLanguage">
+                    <option ng-selected="app.culture == vm.targetLanguage"
+                            ng-repeat="app in vm.languages"
+                            ng-value="app.culture">
+                        {{app.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="mb-2" for="recursive">Recursive</label>
+                <input type="checkbox" ng-model="vm.recursive" ng-true-value="1" ng-false-value="0">
+            </div>
+        </div>
+        <div class="column span6">
+            <div class="form-group">
+                <label class="mb-2" for="message">Select a start node</label>
+                <br />
+                <umb-property-editor ng-model="vm.startNodeId" model="vm.contentPickerProperty"></umb-property-editor>
+            </div>
+
+            <div class="form-group">
+                <a class="button" ng-click="vm.reset()">Execute</a>
+            </div>
+        </div>
+    </div>

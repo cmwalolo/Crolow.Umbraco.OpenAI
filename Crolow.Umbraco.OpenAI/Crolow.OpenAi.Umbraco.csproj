@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Title>Crolow OpenAI for Umbraco</Title>
+		<Authors>Crolow</Authors>
+		<Company>Crolow</Company>
+		<Description>Umbraco package to create content through OpenAI</Description>
+		<Version>1.0.0-alpha1</Version>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Copyright>Crolow</Copyright>
+		<PackageProjectUrl>https://crolow.eu</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/cmwalolo/Crolow-Pix.Cms.Website</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="App_Plugins\Dragonfly.SchemaImporter\**" />
+		<Compile Remove="App_Plugins\TagManager\**" />
+		<EmbeddedResource Remove="App_Plugins\Dragonfly.SchemaImporter\**" />
+		<EmbeddedResource Remove="App_Plugins\TagManager\**" />
+		<None Remove="App_Plugins\Dragonfly.SchemaImporter\**" />
+		<None Remove="App_Plugins\TagManager\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="App_Plugins\CrolowAI\css\crolowai.css" />
+		<None Remove="App_Plugins\CrolowAI\js\CrolowAI.ContentApp.Controller.js" />
+		<None Remove="App_Plugins\CrolowAI\js\CrolowAI.Controller.js" />
+		<None Remove="App_Plugins\CrolowAI\js\CrolowAI.Resources.js" />
+		<None Remove="App_Plugins\CrolowAI\Lang\en.xml" />
+		<None Remove="App_Plugins\CrolowAI\Lang\fr.xml" />
+		<None Remove="App_Plugins\CrolowAI\Views\AIContentApp.html" />
+		<None Remove="App_Plugins\CrolowAI\Views\AIDashboard.html" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="App_Plugins\CrolowAI\css\crolowai.css">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="App_Plugins\CrolowAI\js\CrolowAI.ContentApp.Controller.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="App_Plugins\CrolowAI\js\CrolowAI.Controller.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="App_Plugins\CrolowAI\js\CrolowAI.Resources.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="App_Plugins\CrolowAI\Lang\en.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="App_Plugins\CrolowAI\Lang\fr.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="App_Plugins\CrolowAI\Views\AIContentApp.html">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="App_Plugins\CrolowAI\Views\AIDashboard.html">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Umbraco.Cms.Core" Version="13.1.1" />
+		<PackageReference Include="Umbraco.Cms.Infrastructure" Version="13.1.1" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="13.1.1" />
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="13.1.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Crolow.Azure\Crolow.AzureServices.csproj" />
+	</ItemGroup>
+
+</Project>

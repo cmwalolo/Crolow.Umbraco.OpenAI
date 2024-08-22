@@ -1,0 +1,10 @@
+
+.umb-dashboard-grid .button {
+    border-radius: 3px;
+    background-color: #39D18C;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    transition: background-color 150ms ease-in-out;
+}
