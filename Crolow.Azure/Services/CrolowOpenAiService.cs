@@ -1,6 +1,5 @@
 ﻿using Crolow.AzureServices.Interfaces;
 using Crolow.AzureServices.Models.Requests;
-using Microsoft.AspNetCore.Mvc;
 using OpenAI;
 using OpenAI.Chat;
 using OpenAI.Images;
@@ -37,8 +36,6 @@ namespace Crolow.AzureServices.Services
             return result.Result.Value;
         }
 
-
-        [HttpPost("describe-image")]
         public ChatCompletion DescribeImage(ImageDescriptionRequest request)
         {
             var client = _openAiClient.GetChatClient(DefaultModel);
@@ -68,7 +65,6 @@ namespace Crolow.AzureServices.Services
             return results.Result.Value;
         }
 
-        [HttpPost("translate-text")]
         public ChatCompletion TranslateText(TranslationRequest request)
         {
             var client = _openAiClient.GetChatClient(DefaultModel);
@@ -87,7 +83,6 @@ namespace Crolow.AzureServices.Services
             return results.Result.Value;
         }
 
-        [HttpPost("correct-text")]
         public ChatCompletion CorrectText(CorrectionRequest request)
         {
             var client = _openAiClient.GetChatClient(DefaultModel);
@@ -106,7 +101,6 @@ namespace Crolow.AzureServices.Services
             return results.Result.Value;
         }
 
-        [HttpPost("summarize-text")]
         public ChatCompletion SummarizeText(SummarizeRequest request)
         {
             var client = _openAiClient.GetChatClient(DefaultModel);
@@ -128,7 +122,6 @@ namespace Crolow.AzureServices.Services
             return results.Result.Value;
         }
 
-        [HttpPost("create-hashtags")]
         public ChatCompletion CreateHashTags(CreateHashTagsRequest request)
         {
             var client = _openAiClient.GetChatClient(DefaultModel);
@@ -142,6 +135,28 @@ namespace Crolow.AzureServices.Services
 
             var options = BuildBaseOptions((OpenAiBaseRequest)request);
             messages.AddRange(GetSystemMessages("You are a helpful metadata writer..", request.SystemMessages, request.ResponseFormat));
+
+            var results = client.CompleteChatAsync(messages, options);
+            return results.Result.Value;
+        }
+
+        public ChatCompletion GenericRequest(OpenAiBaseRequest request)
+        {
+            var client = _openAiClient.GetChatClient(DefaultModel);
+            var messages = new List<ChatMessage>();
+
+            var options = BuildBaseOptions((OpenAiBaseRequest)request);
+            messages.AddRange(GetSystemMessages("You are a helpful metadata writer..", request.SystemMessages, request.ResponseFormat));
+
+
+            if (request.Prompts != null)
+            {
+                foreach (var prompt in request.Prompts)
+                {
+                    messages.Add(new UserChatMessage(prompt));
+                }
+            }
+
 
             var results = client.CompleteChatAsync(messages, options);
             return results.Result.Value;
@@ -199,11 +214,11 @@ namespace Crolow.AzureServices.Services
                 User = request.UserName,
                 //                options.Count = request.ChoiceCount;
                 FrequencyPenalty = request.FrequencyPenalty,
-                MaxTokens = request.MaxTokens,
+                MaxTokens = request.MaxTokens ?? 4096,
                 PresencePenalty = request.PresencePenalty,
                 ResponseFormat = request.ResponseFormat.Equals("json") ? ChatResponseFormat.JsonObject : ChatResponseFormat.Text,
                 Seed = request.Seed,
-                Temperature = 0.6f,
+                Temperature = 1f,
                 TopP = 0.6f
                 //zTemperature = request.Temperature,
             };

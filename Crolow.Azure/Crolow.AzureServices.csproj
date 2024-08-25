@@ -17,6 +17,11 @@
 
 	<ItemGroup>
 	  <Folder Include="Controllers\" />
+	  <Folder Include="NewFolder\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\Kalow Framework\Kalow.Apps.Managers\Kalow.Apps.Managers.LiteDb\Kalow.Apps.Managers.LiteDb.csproj" />
 	</ItemGroup>
 
 </Project>

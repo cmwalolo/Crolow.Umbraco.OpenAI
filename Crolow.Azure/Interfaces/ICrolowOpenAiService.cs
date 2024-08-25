@@ -12,5 +12,6 @@ namespace Crolow.AzureServices.Interfaces
         GeneratedImage GenerateImage(ImageGenerationRequest request);
         ChatCompletion SummarizeText(SummarizeRequest request);
         ChatCompletion TranslateText(TranslationRequest request);
+        ChatCompletion GenericRequest(OpenAiBaseRequest request);
     }
 }
