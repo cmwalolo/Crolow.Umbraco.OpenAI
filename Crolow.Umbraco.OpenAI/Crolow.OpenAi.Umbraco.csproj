@@ -9,11 +9,14 @@
 		<Company>Crolow</Company>
 		<Description>Umbraco package to create content through OpenAI</Description>
 		<Version>1.0.0-alpha1</Version>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
 		<Copyright>Crolow</Copyright>
 		<PackageProjectUrl>https://crolow.eu</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/cmwalolo/Crolow-Pix.Cms.Website</RepositoryUrl>
+		<RepositoryUrl>https://github.com/cmwalolo/Crolow.Umbraco.OpenAI</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+		<PackageTags>Umbraco;OpenAI;.NET</PackageTags>
+		<PackageOutputPath>C:\dev\crolow\packages</PackageOutputPath>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -64,14 +67,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Crolow.OpenAI" Version="1.0.0-alpha1" />
 		<PackageReference Include="Umbraco.Cms.Core" Version="13.1.1" />
 		<PackageReference Include="Umbraco.Cms.Infrastructure" Version="13.1.1" />
 		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="13.1.1" />
 		<PackageReference Include="Umbraco.Cms.Web.Website" Version="13.1.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\Crolow.Azure\Crolow.AzureServices.csproj" />
 	</ItemGroup>
 
 </Project>

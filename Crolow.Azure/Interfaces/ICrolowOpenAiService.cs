@@ -1,8 +1,8 @@
-﻿using Crolow.AzureServices.Models.Requests;
+﻿using Crolow.OpenAI.Models.Requests;
 using OpenAI.Chat;
 using OpenAI.Images;
 
-namespace Crolow.AzureServices.Interfaces
+namespace Crolow.OpenAI.Interfaces
 {
     public interface ICrolowOpenAiService
     {

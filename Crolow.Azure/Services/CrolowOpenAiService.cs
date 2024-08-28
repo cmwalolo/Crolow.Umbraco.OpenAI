@@ -1,15 +1,15 @@
-﻿using Crolow.AzureServices.Interfaces;
-using Crolow.AzureServices.Models.Requests;
+﻿using Crolow.OpenAI.Interfaces;
+using Crolow.OpenAI.Models.Requests;
 using OpenAI;
 using OpenAI.Chat;
 using OpenAI.Images;
 using System.Net;
 
-namespace Crolow.AzureServices.Services
+namespace Crolow.OpenAI.Services
 {
     public class CrolowOpenAiService : ICrolowOpenAiService
     {
-        private readonly string DefaultModel = /*"gpt-3.5-turbo-0125";*/ "gpt-4o";
+        private readonly string DefaultModel = "gpt-4o-2024-08-06"; ///*"gpt-3.5-turbo-0125";*/ /*"gpt-4o-mini-2024-07-18"*/  "gpt-4o";
         private readonly OpenAIClient _openAiClient;
 
         public CrolowOpenAiService(OpenAIClient openAiClient)
@@ -41,7 +41,7 @@ namespace Crolow.AzureServices.Services
             var client = _openAiClient.GetChatClient(DefaultModel);
             var messages = new List<ChatMessage>();
 
-            var options = BuildBaseOptions((OpenAiBaseRequest)request);
+            var options = BuildBaseOptions(request);
             messages.AddRange(GetSystemMessages("You are a helpful creative writer.", request.SystemMessages, request.ResponseFormat));
             messages.Add(new SystemChatMessage($"Describe the given image"));
 
@@ -70,13 +70,13 @@ namespace Crolow.AzureServices.Services
             var client = _openAiClient.GetChatClient(DefaultModel);
             var messages = new List<ChatMessage>();
 
-            var options = BuildBaseOptions((OpenAiBaseRequest)request);
+            var options = BuildBaseOptions(request);
             messages.AddRange(GetSystemMessages("You are a helpful creative translator.", request.SystemMessages, request.ResponseFormat));
             messages.Add(new SystemChatMessage("$Translate the give JSON property values from {request.SourceLanguage} to {request.TargetLanguage}"));
 
             if (request.Prompts != null)
             {
-                messages.Add(new OpenAI.Chat.UserChatMessage(string.Join("\n", request.Prompts)));
+                messages.Add(new global::OpenAI.Chat.UserChatMessage(string.Join("\n", request.Prompts)));
             }
 
             var results = client.CompleteChatAsync(messages, options);
@@ -88,13 +88,13 @@ namespace Crolow.AzureServices.Services
             var client = _openAiClient.GetChatClient(DefaultModel);
             var messages = new List<ChatMessage>();
 
-            var options = BuildBaseOptions((OpenAiBaseRequest)request);
+            var options = BuildBaseOptions(request);
             messages.AddRange(GetSystemMessages("You are a helpful creative corrector.", request.SystemMessages, request.ResponseFormat));
             messages.Add(new SystemChatMessage("Correct the given JSON and preserve the structure. Used language is {request.SourceLanguage}"));
 
             if (request.Prompts != null)
             {
-                messages.Add(new OpenAI.Chat.UserChatMessage(string.Join("\n", request.Prompts)));
+                messages.Add(new global::OpenAI.Chat.UserChatMessage(string.Join("\n", request.Prompts)));
             }
 
             var results = client.CompleteChatAsync(messages, options);
@@ -106,7 +106,7 @@ namespace Crolow.AzureServices.Services
             var client = _openAiClient.GetChatClient(DefaultModel);
             var messages = new List<ChatMessage>();
 
-            var options = BuildBaseOptions((OpenAiBaseRequest)request);
+            var options = BuildBaseOptions(request);
             messages.AddRange(GetSystemMessages("You are a helpful, creative and teasing metadata writer.", request.SystemMessages, request.ResponseFormat));
 
 
@@ -114,7 +114,7 @@ namespace Crolow.AzureServices.Services
             {
                 messages.Add($"Extract the text from the given JSON and write me a title, a teaser and a summary of the following text. Text language is {request.SourceLanguage}");
                 messages.Add($"The output is a a JSON object with a title, a teaser and a summary field");
-                messages.Add(new OpenAI.Chat.UserChatMessage(string.Join("\n", request.Prompts)));
+                messages.Add(new global::OpenAI.Chat.UserChatMessage(string.Join("\n", request.Prompts)));
             }
 
 
@@ -130,10 +130,10 @@ namespace Crolow.AzureServices.Services
             if (request.Prompts != null)
             {
                 messages.Add($"Create a maximum {request.AmountOfTags} of popular hashtags found on Instagram. The output Hashtags language is {request.TargetLanguage}. Used language is {request.SourceLanguage}.");
-                messages.Add(new OpenAI.Chat.UserChatMessage(string.Join("\n", request.Prompts)));
+                messages.Add(new global::OpenAI.Chat.UserChatMessage(string.Join("\n", request.Prompts)));
             }
 
-            var options = BuildBaseOptions((OpenAiBaseRequest)request);
+            var options = BuildBaseOptions(request);
             messages.AddRange(GetSystemMessages("You are a helpful metadata writer..", request.SystemMessages, request.ResponseFormat));
 
             var results = client.CompleteChatAsync(messages, options);
@@ -145,7 +145,7 @@ namespace Crolow.AzureServices.Services
             var client = _openAiClient.GetChatClient(DefaultModel);
             var messages = new List<ChatMessage>();
 
-            var options = BuildBaseOptions((OpenAiBaseRequest)request);
+            var options = BuildBaseOptions(request);
             messages.AddRange(GetSystemMessages("You are a helpful metadata writer..", request.SystemMessages, request.ResponseFormat));
 
 
@@ -209,7 +209,7 @@ namespace Crolow.AzureServices.Services
 
         private ChatCompletionOptions BuildBaseOptions(OpenAiBaseRequest request)
         {
-            var options = new OpenAI.Chat.ChatCompletionOptions()
+            var options = new ChatCompletionOptions()
             {
                 User = request.UserName,
                 //                options.Count = request.ChoiceCount;
@@ -220,7 +220,6 @@ namespace Crolow.AzureServices.Services
                 Seed = request.Seed,
                 Temperature = 1f,
                 TopP = 0.6f
-                //zTemperature = request.Temperature,
             };
 
             return options;

@@ -1,6 +1,6 @@
-﻿using Crolow.AzureServices.Models.Configuration;
-using Crolow.OpenAi.Umbraco.Interfaces;
+﻿using Crolow.OpenAi.Umbraco.Interfaces;
 using Crolow.OpenAi.Umbraco.Models;
+using Crolow.OpenAI.Models.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Web.BackOffice.Controllers;
 

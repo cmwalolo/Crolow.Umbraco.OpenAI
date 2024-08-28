@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Title>Crolow OpenAI</Title>
+		<Version>1.0.0-alpha1</Version>
+		<Description>A Package to create content using OpenAI</Description>
+		<Copyright>Crolow</Copyright>
+		<PackageProjectUrl>https://crolow.eu</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/cmwalolo/Crolow.Umbraco.OpenAI</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageOutputPath>C:\dev\crolow\packages</PackageOutputPath>
+		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+
+		<PackageReference Include="Azure.AI.OpenAI" Version="2.0.0-beta.2" />
+		<PackageReference Include="Azure.Core" Version="1.42.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Controllers\" />
+	</ItemGroup>
+</Project>

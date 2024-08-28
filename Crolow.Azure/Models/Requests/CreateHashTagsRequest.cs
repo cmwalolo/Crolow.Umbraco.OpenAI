@@ -1,4 +1,4 @@
-﻿namespace Crolow.AzureServices.Models.Requests
+﻿namespace Crolow.OpenAI.Models.Requests
 {
     public class CreateHashTagsRequest : OpenAiBaseRequest
     {

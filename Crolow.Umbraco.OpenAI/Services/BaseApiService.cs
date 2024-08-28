@@ -1,6 +1,6 @@
-﻿using Crolow.AzureServices.Interfaces;
-using Crolow.AzureServices.Models.Configuration;
-using Crolow.OpenAi.Umbraco.Models;
+﻿using Crolow.OpenAi.Umbraco.Models;
+using Crolow.OpenAI.Interfaces;
+using Crolow.OpenAI.Models.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StackExchange.Profiling.Internal;

@@ -1,8 +1,8 @@
-﻿using Crolow.AzureServices.Interfaces;
-using Crolow.AzureServices.Models.Configuration;
-using Crolow.AzureServices.Services;
-using Crolow.OpenAi.Umbraco.Interfaces;
+﻿using Crolow.OpenAi.Umbraco.Interfaces;
 using Crolow.OpenAi.Umbraco.Services;
+using Crolow.OpenAI.Interfaces;
+using Crolow.OpenAI.Models.Configuration;
+using Crolow.OpenAI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OpenAI;

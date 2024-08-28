@@ -1,4 +1,4 @@
-﻿namespace Crolow.AzureServices.Models.Configuration
+﻿namespace Crolow.OpenAI.Models.Configuration
 {
     public class OpenAiConfiguration
     {
